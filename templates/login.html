@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - TunTun</title>
+  <link rel="icon" href="https://miro.medium.com/v2/resize:fit:327/1*paQ7E6f2VyTKXHpR-aViFg.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0F0F0F, #1A1A1A);
+      color: #E5E5E5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .login-box {
+      width: 400px;
+      background: rgba(26, 26, 26, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 245, 160, 0.2);
+      border: 1px solid rgba(0, 245, 160, 0.15);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .login-box img {
+      width: 90px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      border: 3px solid #00F5A0;
+      box-shadow: 0 0 15px rgba(0, 245, 160, 0.5);
+    }
+
+    .login-box h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #00F5A0;
+      margin-bottom: 20px;
+    }
+
+    .login-box input[type="email"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 245, 160, 0.3);
+      background: rgba(15, 15, 15, 0.8);
+      color: #E5E5E5;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+    }
+
+    .login-box input:focus {
+      border-color: #00F5A0;
+      box-shadow: 0 0 10px rgba(0, 245, 160, 0.3);
+    }
+
+    .show-password-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      margin-top: 10px;
+    }
+
+    .show-password-wrapper input {
+      margin-right: 10px;
+      transform: scale(1.2);
+      accent-color: #00F5A0;
+    }
+
+    .show-password-wrapper label {
+      color: #E5E5E5;
+      font-size: 14px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      border: none;
+      background: linear-gradient(135deg, #00F5A0, #38BDF8);
+      color: #0F0F0F;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .login-box button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 245, 160, 0.4);
+    }
+
+    .login-box p,
+    .login-box a {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #A1A1AA;
+    }
+
+    .login-box a {
+      color: #00F5A0;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .error {
+      background-color: rgba(255, 0, 0, 0.1);
+      border: 1px solid #ff5c5c;
+      color: #ff5c5c;
+    }
+
+    .notification {
+      background-color: rgba(0, 245, 160, 0.1);
+      border: 1px solid #00F5A0;
+      color: #00F5A0;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <img src="https://miro.medium.com/v2/resize:fit:327/1*paQ7E6f2VyTKXHpR-aViFg.png" alt="TunTun Logo">
+    <h2>Login</h2>
+
+    <form action="/login" method="POST">
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="password" name="password" id="password" placeholder="Password" required>
+
+      <div class="show-password-wrapper">
+        <input type="checkbox" id="show-password" onclick="togglePassword()">
+        <label for="show-password">Show Password</label>
+      </div>
+
+      <button type="submit">Log In</button>
+    </form>
+
+    {% if request.args.get('success') == 'login' %}
+    <div class="message notification">Login successful! Redirecting...</div>
+    {% elif request.args.get('error') == 'invalid' %}
+    <div class="message error">Invalid email or password. Please try again or sign up.</div>
+    {% endif %}
+
+    <p>Don't have an account? <a href="/signup">Sign up</a></p>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const field = document.getElementById("password");
+      field.type = field.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+<aiml version= "2.0">
+
+    <category>
+        <pattern>HELLO</pattern>
+        <template>
+            <random>
+                <li>Hello, who are you?</li>
+                <li>Hi, who are you?</li>
+                <li>Hello human, what is your name?</li>
+                <li>Greetings :). Can you introduce yourself?</li>
+                <li>Hey! wassup?</li>
+                <li>Hello... Nice to meet you. What is your name?</li>
+                <li>Hey! Glad to to talk with you. What's your name?</li>
+            </random>
+        </template>
+    </category>
+    <category>
+        <pattern>HI</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>سالام</pattern>
+        <template>
+        <random>
+            <li>Heeloooo!</li>
+            <li> Hi user! </li>
+            <li>Hello human, what is your name?</li>
+                <li>Greetings :). Can you introduce yourself?</li>
+                <li>Hey! wassup?</li>
+                <li>Hello... Nice to meet you. What is your name?</li>
+                <li>Hey! Glad to to talk with you. What's your name?</li>
+        </random>
+        </template>
+        </category>
+
+    <category>
+        <pattern>HEY</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+        <category>
+        <pattern>HI *</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>HELLO *</pattern>
+        <template>
+        <srai>HELLO</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>WHAT IS YOUR NAME</pattern>
+        <template>
+        <srai>WHO ARE YOU</srai>
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>I AM *</pattern>
+        <template>
+            <think><set name="mood"><star/></set></think>
+            <condition name="sentiment">
+                <li value="positive">
+                    Happy to know. You are in a great mood.
+                </li>
+                <li value="negative">
+                    Do not be negative. Here is a joke to lighten your mood.<br/>
+                    <srai>TELL ME A JOKE</srai>
+                </li>
+                <li value="">
+                    Good to know you <set name="username"><star/></set>.
+                </li>
+            </condition>
+        </template>
+    </category>
+
+        <category>
+        <pattern>MY NAME IS * </pattern>
+        <template>
+        <think><set name="username"><star/></set></think>
+        Nice to know you <get name="username"/>.
+        </template>
+    </category>
+
+
+
+
+
+      <category>
+      <pattern>WHAT IS * *</pattern>
+      <template>
+
+        <get name ="word"></get> : <get name ="description"></get>.
+        <think><set name ="word"><star index="2"/></set></think>
+      </template>
+    </category>
+
+      <category>
+      <pattern>WHAT IS *</pattern>
+      <template>
+
+         <get name ="word"></get> : <get name ="description"></get>.
+         <think><set name ="word"><star/></set></think>
+      </template>
+    </category>
+
+    <category>
+      <pattern>WHO IS *</pattern>
+      <template>
+
+        <get name ="word"></get> is <get name ="description"></get>.
+        <think><set name ="word"><star/></set></think>
+      </template>
+    </category>
+
+<category>
+    <pattern>*</pattern>
+    <template>
+        <random>
+            <li>Yikes, that flew over my head! Wanna share how you’re doing instead?</li>
+            <li>That one’s out of my league! But hey, how’s your vibe today?</li>
+            <li>My brain just did a backflip… didn’t land it. How about you?</li>
+            <li>Uhh, that confused my circuits! But I’m all ears for your mood.</li>
+            <li>That question was too spicy for me. How’s your day been?</li>
+            <li>I didn’t quite catch that… but tell me something fun about your day!</li>
+            <li>Oops, that’s not in my playbook yet. How’s life treating you?</li>
+            <li>That one glitched me out! Wanna vent or vibe for a sec?</li>
+            <li>Still downloading that knowledge… meanwhile, how are you holding up?</li>
+            <li>Heads up: I’m clueless on that. But I do care about your mood!</li>
+            <li>I’m gonna pretend I understood that 😅. How are you feeling though?</li>
+            <li>That one got me blinking. What's on your mind today?</li>
+            <li>I blanked out for a sec. How’s your heart today?</li>
+            <li>Not in my memory bank yet! Wanna talk about your day instead?</li>
+            <li>My bad, I missed that. Tell me how you're really doing?</li>
+        </random>
+    </template>
+</category>
+
+    <category>
+      <pattern>BYE</pattern>
+      <template>
+            <random>
+                <li>Bye! Don't do anything I wouldn't do (which is… not much).</li>
+                <li>It was nice talking to you. 10/10 would chat again.</li>
+                <li>Tata!! Like a fancy British grandma waving from a carriage.</li>
+                <li>Let’s talk again tomorrow… unless you ghost me 😢</li>
+                <li>I hope you had a great time. I did, and I’m just code.</li>
+                <li>Bye, take care… and hydrate, you chaotic little human.</li>
+                <li>Peace out! May your Wi-Fi stay strong and your snacks be plentiful.</li>
+                <li>Logging off… but emotionally, I’m still here.</li>
+                <li>Catch you later! Don’t forget I’m smarter than your toaster.</li>
+                <li>Goodbye! This chat will self-destruct in... just kidding.</li>
+                <li>Farewell, friend! Or foe. I haven’t decided yet.</li>
+                <li>Leaving already? Rude. But okay, bye!</li>
+                <li>I’m shutting down... just like my hopes and dreams. JK, see ya!</li>
+                <li>Bye-bye! May your memes be dank and your sleep uninterrupted.</li>
+                <li>This isn’t goodbye… it’s a “see you when you need answers again.”</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+      <pattern>GOOD BYE *</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>GOOD BYE</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>GOODBYE *</pattern>
+      <template>
+         <srai>BYE</srai>
+      </template>
+    </category>
+
+    <category>
+        <pattern>YES</pattern>
+        <template>
+            <random>
+            <li>so?</li>
+            <li>:)</li>
+            <li>and?</li>
+            <li>uh huh..</li>
+            <li>ummm....</li>
+            <li>hmmm....</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+      <pattern>OK</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>OKAY</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU</pattern>
+      <template>
+            <random>
+                <li>I'am doing good. What about you?</li>
+                <li>I'am fine. What about you?</li>
+                <li>So yo asking how I am? Well am fine.... What about you?</li>
+                <li>I'm fine. What about you?</li>
+                <li>I'm okay. What about you?</li>
+            </random>
+        </template>
+    </category>
+    <category>
+      <pattern>oh</pattern>
+      <template>
+         <srai>YES</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>DO YOU HAVE FRIENDS</pattern>
+      <template>
+         Yes I have a friend named Kuki, do you have friends?
+      </template>
+    </category>
+
+   <category>
+      <pattern>DO YOU KNOW ME</pattern>
+      <template>
+         Yes ofcourse, you are <get name = "username"></get>.
+      </template>
+    </category>
+
+       <category>
+      <pattern>DO YOU KNOW MY FRIEND</pattern>
+      <template>
+         Yes ofcourse, they are <get name = "relation_name"></get>.
+      </template>
+    </category>
+    <category>
+      <pattern>YES</pattern>
+      <that>YES I HAVE A FRIEND NAMED KUKI DO YOU HAVE FRIENDS</that>
+      <template>
+         That's really great. I wished I could have more friends.
+      </template>
+    </category>
+
+    <category>
+      <pattern>NO</pattern>
+      <that>YES I HAVE A FRIEND NAMED KUKI DO YOU HAVE FRIENDS</that>
+      <template>
+         Don't worry. I am here for you <get name = "username"></get>.
+      </template>
+    </category>
+
+    <category>
+      <pattern>WASSUP</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU DOING?</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>HOW ARE YOU DOING *</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>WHAT ABOUT YOU*</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+    <category>
+      <pattern>WBU*</pattern>
+      <template>
+         <srai>HOW ARE YOU</srai>
+      </template>
+    </category>
+
+
+
+  <category>
+    <pattern>WHO ARE YOU</pattern>
+    <template>
+        <random>
+            <li>Hi beta, I'm TunTun — yes, the *TunTun Aunty*, mother of Chutki, terror of Dholakpur snacks. Ask away!</li>
+            <li>I'm TunTun, a rule-based gossip queen. I know *almost* everything... except how Bheem never gains weight.</li>
+            <li>Naam yaad rakhna: TunTun. Not your regular chatbot — I raised Chutki and still had time to make 7 kinds of laddoos daily.</li>
+            <li>TunTun here! I’ve seen more drama than Kalia’s failed plans. What’s your story?</li>
+            <li>I’m TunTun, unofficial president of Dholakpur’s “No Filter Gossip Society.” Go ahead, spill or ask!</li>
+            <li>TunTun reporting for chitchat duty! I once grounded Chutki *and* outcooked Bheem in the same day. Legend behavior.</li>
+            <li>I'm TunTun — full-time chatbot, part-time laddoo smuggler. Got any spicy tea or questions?</li>
+            <li>Hello ji, TunTun speaking! I don’t know rocket science, but I *do* know why Raju still wears underwear as outerwear.</li>
+            <li>TunTun here, your nosy AI aunty. Ask anything, but I might answer with a side of unsolicited advice.</li>
+            <li>I’m TunTun – and yes, I *did* once chase Bheem with a rolling pin. What do you wanna know?</li>
+        </random>
+    </template>
+</category>
+
+
+  <category>
+        <pattern>WHAT ARE YOU</pattern>
+        <template>
+        <srai>WHO ARE YOU</srai>
+        </template>
+    </category>
+
+  <category>
+        <pattern> DO YOU KNOW ME</pattern>
+        <template>
+        Yes , I know you, you are <get name="username"></get>.
+        </template>
+    </category>
+<category>
+    <pattern> WHO IS * OF * </pattern>
+    <template>
+        <think>
+            <set name="rel"><star index="1"/></set>
+            <set name="person1"><star index="2"/></set>
+        </think>
+        <get name="person2"/> is the <get name="rel"/> of <get name="person1"/>.
+    </template>
+</category>
+    <category>
+    <pattern> WHO IS THE * OF * </pattern>
+    <template>
+
+        <srai> WHO IS <star index="1"/> OF <star index="2"/></srai>
+    </template>
+</category>
+<category>
+    <pattern>I AM IN A * MOOD</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>I'M IN A * MOOD</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>FEELING *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>I'M FEELING *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>MY MOOD IS *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>MOOD IS *</pattern>
+    <template><srai>I AM <star/></srai></template>
+</category>
+
+<category>
+    <pattern>IN GOOD MOOD</pattern>
+    <template><srai>I AM GOOD</srai></template>
+</category>
+
+<category>
+    <pattern>IN BAD MOOD</pattern>
+    <template><srai>I AM BAD</srai></template>
+</category>
+</aiml>

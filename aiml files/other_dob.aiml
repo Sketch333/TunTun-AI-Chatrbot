@@ -1,0 +1,128 @@
+<aiml version= "2.0">
+<category>
+    <pattern>DOB OF * IS *</pattern>
+    <template>
+        Got it. <star index="1"/>'s DOB is <star index="2"/>.
+        <think>
+            <set name="other_dob_person"><star index="1"/></set>
+            <set name="other_dob"><star index="2"/></set>
+        </think>
+    </template>
+</category>
+
+<category>
+    <pattern>DATE OF BIRTH OF * IS *</pattern>
+    <template>
+        Noted. <star index="1"/>'s date of birth is <star index="2"/>.
+        <think>
+            <set name="other_dob_person"><star index="1"/></set>
+            <set name="other_dob"><star index="2"/></set>
+        </think>
+    </template>
+</category>
+
+<category>
+    <pattern>* WAS BORN ON *</pattern>
+    <template>
+        Thanks! <star index="1"/> was born on <star index="2"/>.
+        <think>
+            <set name="other_dob_person"><star index="1"/></set>
+            <set name="other_dob"><star index="2"/></set>
+        </think>
+    </template>
+</category>
+
+<category>
+    <pattern>*'S DOB IS *</pattern>
+    <template>
+        Got it. <star index="1"/>'s DOB is <star index="2"/>.
+        <think>
+            <set name="other_dob_person"><star index="1"/></set>
+            <set name="other_dob"><star index="2"/></set>
+        </think>
+    </template>
+</category>
+
+<category>
+    <pattern>*'S DATE OF BIRTH IS *</pattern>
+    <template>
+        Noted. <star index="1"/>'s date of birth is <star index="2"/>.
+        <think>
+            <set name="other_dob_person"><star index="1"/></set>
+            <set name="other_dob"><star index="2"/></set>
+        </think>
+    </template>
+</category>
+<!-- 🎯 User tells DOB of someone else -->
+<category>
+    <pattern>_ 'S DATE OF BIRTH IS *</pattern>
+    <template>
+        Got it. I've saved <star/> as <person/>’s date of birth.
+        <think>
+            <set name="other_dob_person"><person/></set>
+            <set name="other_dob"><star/></set>
+        </think>
+    </template>
+</category>
+
+<category>
+    <pattern>_ 'S DOB IS *</pattern>
+    <template>
+        Thanks! I've saved <star/> as <person/>’s DOB.
+        <think>
+            <set name="other_dob_person"><person/></set>
+            <set name="other_dob"><star/></set>
+        </think>
+    </template>
+</category>
+
+<!-- 🎯 User asks for DOB of someone else -->
+<category>
+    <pattern>WHAT IS * 'S DATE OF BIRTH</pattern>
+    <template>
+        Let me check. One sec...
+        <think><set name="dob_person"><star/></set></think>
+    </template>
+</category>
+
+<category>
+    <pattern>WHEN WAS * BORN</pattern>
+    <template>
+        Let me see... looking up birth date of <star/>.
+        <think><set name="dob_person"><star/></set></think>
+    </template>
+</category>
+
+<!-- 🧍‍♂️ User gives their own DOB (fallbacks) -->
+<category>
+    <pattern>MY DATE OF BIRTH IS *</pattern>
+    <template>
+        Thanks for telling me! I’ve saved your DOB as <star/>.
+        <think><set name="dob"><star/></set></think>
+    </template>
+</category>
+
+<category>
+    <pattern>I WAS BORN ON *</pattern>
+    <template>
+        You were born on <star/>. Got it.
+        <think><set name="dob"><star/></set></think>
+    </template>
+</category>
+
+<category>
+    <pattern>MY BIRTHDAY IS *</pattern>
+    <template>
+        Thank you! I’ll remember your birthday is <star/>.
+        <think><set name="dob"><star/></set></think>
+    </template>
+</category>
+
+<category>
+    <pattern>DATE OF BIRTH *</pattern>
+    <template>
+        DOB noted: <star/>.
+        <think><set name="dob"><star/></set></think>
+    </template>
+</category>
+</aiml>
