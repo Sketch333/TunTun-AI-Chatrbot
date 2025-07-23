@@ -981,7 +981,7 @@
             <div class="content-section" id="chat">
                 <div class="chat-container">
                     <div class="chat-header">
-                        <img src="https://miro.medium.com/max/327/1*paQ7E6f2VyTKXHpR-aViFg.png" alt="TunTun">
+                        <img src="/static/images/logo.png" alt="TunTun">
                         <div>
                             <h3>TunTun Assistant</h3>
                             <p>AI-powered sensor assistant</p>
@@ -996,7 +996,7 @@
                             </div>
                         </div>
                         <div class="message sent">
-                            <img src="https://miro.medium.com/max/327/1*paQ7E6f2VyTKXHpR-aViFg.png" alt="TunTun">
+                            <img src="/static/images/logo.png" alt="TunTun">
                             <div class="message-content">
                                 Hello! I'm TunTun, your ESP32 sensor assistant. I can help you monitor sensor readings, control devices, and troubleshoot issues. What would you like to know?
                             </div>
@@ -1454,7 +1454,7 @@ function sendChatMessage() {
         .then(response => response.text())
         .then(data => {
             hideTypingIndicator();
-            addChatMessage(data, 'received', 'https://miro.medium.com/max/327/1*paQ7E6f2VyTKXHpR-aViFg.png');
+            addChatMessage(data, 'received', '/static/images/logo.png');
         })
         .catch(error => {
             hideTypingIndicator();
@@ -1486,7 +1486,7 @@ function sendChatMessage() {
             typingDiv.id = 'typing-indicator';
 
             typingDiv.innerHTML = `
-                <img src="https://miro.medium.com/max/327/1*paQ7E6f2VyTKXHpR-aViFg.png" alt="TunTun" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+                <img src="/static/images/logo.png" alt="TunTun" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
                 TunTun is typing
                 <div class="typing-dots">
                     <div class="typing-dot"></div>
@@ -1573,19 +1573,24 @@ function sendChatMessage() {
         }
         // Simulate changing sensor values
         setInterval(() => {
-            sensorData = {
-                temperature: Math.max(15, Math.min(35, sensorData.temperature + (Math.random() - 0.5))),
-                humidity: Math.max(30, Math.min(70, sensorData.humidity + (Math.random() - 0.5))),
-                distance: Math.max(50, Math.min(350, sensorData.distance + (Math.random() * 20 - 10))),
-                micLevel: Math.max(10, Math.min(80, sensorData.micLevel + (Math.random() * 10 - 5))),
-                motion: Math.random() > 0.9,
-                wifiSignal: -Math.floor(Math.random() * 40) - 40,
-                uptime: sensorData.uptime + 1,
-                freeMemory: Math.max(10000, sensorData.freeMemory - 1),
-                ipAddress: sensorData.ipAddress
-            };
-            updateSensorData(sensorData);
+            fetch('/get_sensor_data') // Flask should serve this
+                .then(response => response.json())
+                .then(data => {
+                    const extendedData = {
+                        ...data,
+                        wifiSignal: -Math.floor(Math.random() * 40) - 40,
+                        uptime: (data.uptime || 0) + 1,
+                        freeMemory: Math.max(10000, (data.freeMemory || 11000) - 1),
+                        ipAddress: data.ipAddress || "192.168.100.6"
+                    };
+
+                    updateSensorData(extendedData);
+                })
+                .catch(err => {
+                    console.error("Error fetching sensor data:", err);
+                });
         }, 2000);
+
         document.getElementById('chatInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 sendChatMessage();
